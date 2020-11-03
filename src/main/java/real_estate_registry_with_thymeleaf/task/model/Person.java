@@ -20,5 +20,5 @@ public class Person {
     private String last_name;
 
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "person")
-    private Set<Building> building = new HashSet<>();
+    private final Set<Building> building = new HashSet<>();
 }
