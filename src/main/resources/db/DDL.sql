@@ -22,6 +22,13 @@ create table address
     foreign key (city_id) references city (id)
 );
 
+create table property_type
+(
+    id bigint unsigned auto_increment primary key,
+    type varchar(50) not null unique
+);
+
+
 create table building
 (
     id           bigint unsigned auto_increment primary key,
@@ -29,8 +36,8 @@ create table building
     person_id    bigint unsigned not null,
     size         int unsigned    not null,
     market_value  decimal(10, 2)  not null,
-    property_type varchar(50)     not null,
+    type_name varchar(50) not null,
     foreign key (address_id) references address (id),
-    foreign key (person_id) references person (id)
+    foreign key (person_id) references person (id),
+    foreign key (type_name) references property_type(type)
 );
-drop schema zenitech;
