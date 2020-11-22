@@ -1,17 +1,41 @@
 package real_estate_registry_with_thymeleaf.task.model;
 
-public enum PropertyType {
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-    APARTMENT("APARTMENT"),
+@Entity
+@Table(name = "property_type")
+public class PropertyType {
 
-    HOUSE("HOUSE"),
+    @Id
+    @Column(name = "id", unique = true, nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    INDUSTRIAL("INDUSTRIAL"),
+    @Column(name = "type", nullable = false, length = 50)
+    private String type;
 
-    COMMERCIAL("COMMERCIAL");
+    @OneToMany(mappedBy = "propertyType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private final Set<Building> building = new HashSet<>();
 
-    private String value;
+    public Long getId() {
+        return id;
+    }
 
-    PropertyType(String value) { this.value = value; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Set<Building> getBuilding() {
+        return building;
+    }
 }
-

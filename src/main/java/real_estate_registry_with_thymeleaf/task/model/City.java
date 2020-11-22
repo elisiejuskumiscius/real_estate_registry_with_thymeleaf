@@ -11,13 +11,12 @@ public class City {
     @Id
     @Column(name = "id", unique = true, nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "city", orphanRemoval = true)
+    @OneToMany(mappedBy = "city")
     private Set<Address> address = new HashSet<>();
 
     public Long getId() { return id; }
@@ -31,4 +30,5 @@ public class City {
     public Set<Address> getAddress() { return address; }
 
     public void setAddress(Set<Address> address) { this.address = address; }
+
 }
