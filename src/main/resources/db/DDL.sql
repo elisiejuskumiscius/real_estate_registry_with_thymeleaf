@@ -36,8 +36,8 @@ create table building
     person_id    bigint unsigned not null,
     size         int unsigned    not null,
     market_value  decimal(10, 2)  not null,
-    type_name varchar(50) not null,
+    type_name_id bigint unsigned not null,
     foreign key (address_id) references address (id),
     foreign key (person_id) references person (id),
-    foreign key (type_name) references property_type(type)
+    foreign key (type_name_id) references property_type(id)
 );
